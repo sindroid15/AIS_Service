@@ -1,0 +1,210 @@
+﻿<UserControl     x:Class="AIS.Forms.Home"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:AIS.Forms"
+                 xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"         
+                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                 xmlns:src="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:domain="clr-namespace:AIS_DataAccessLayer;assembly=AlphaElectric_DataAccessLayer"
+                 
+                 Background="{DynamicResource MaterialDesignPaper}"
+                 FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                 TextElement.FontWeight="Regular"
+                 TextElement.FontSize="12"
+                 TextOptions.TextFormattingMode="Ideal" 
+                 TextOptions.TextRenderingMode="Auto" 
+                 
+                 Height="Auto"
+                 Width="Auto"     
+                 Loaded="Window_Loaded">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="120" />
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0" Name="UserPages" Margin="20,0,20,0">
+        </Grid>
+        
+        
+        <Grid Name="topgrid" 
+              Grid.Row="1"  
+              HorizontalAlignment="Center" 
+              VerticalAlignment="Top" 
+              Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Source="Resources/ms-icon-310x310.png" Stretch="Uniform" Width="80" Height="80" />
+            <StackPanel Grid.Column="1" Margin="24 0 0 0" VerticalAlignment="Center">
+                
+                <TextBlock Style="{StaticResource MaterialDesignDisplay1TextBlock}" 
+                           TextWrapping="Wrap"  
+                           Name="WelcomeMessage"/>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Backburger" />
+                        <TextBlock Margin="8 0 0 0">
+                            <Run Text="Быстрые задачи"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        
+        <ScrollViewer Grid.Row="2" Name="mainscrollviewer"   
+                      HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Disabled"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      Margin="0 0 0 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    
+                    <materialDesign:Card Width="520" 
+                                         Margin="4 2 8 16" 
+                                         Height="260">
+                        <Grid VerticalAlignment="Stretch" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!--<Image Source="Resources/Contact.png" Grid.RowSpan="5" StretchDirection="Both" VerticalAlignment="Stretch" Stretch="UniformToFill" />-->
+                            <TextBlock Grid.ColumnSpan="2" 
+                                       Style="{StaticResource MaterialDesignHeadlineTextBlock}" 
+                                       Margin="16 16 16 2" 
+                                       Text="АИС сервисного обслуживания клиентов"/>
+                            <TextBlock Grid.Column="1" 
+                                       Grid.Row="1" 
+                                       TextWrapping="Wrap" 
+                                       Margin="16 0 16 8" 
+                                       Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                       VerticalAlignment="Center"/>
+                            <Border Grid.Column="1" 
+                                    Grid.Row="2" 
+                                    BorderThickness="0 1 0 0" 
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                    Margin="0 8 0 0">
+                                <Grid Margin="8">
+                                    <Button FontSize="15" 
+                                            Style="{DynamicResource MaterialDesignFlatButton}" 
+                                            HorizontalAlignment="Left" 
+                                            x:Name="ButtonEmployees" 
+                                            Click="ButtonEmployees_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Account" />
+                                            <TextBlock Margin="8 0 0 0" 
+                                                       VerticalAlignment="Center">
+                                                <Run Text="Сотрудники"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button FontSize="15" 
+                                            Style="{DynamicResource MaterialDesignFlatButton}" 
+                                            HorizontalAlignment="Right" 
+                                            x:Name="ButtonProducts" 
+                                            Click="ButtonProducts_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Archive" />
+                                            <TextBlock Margin="8 0 0 0" 
+                                                       VerticalAlignment="Center">
+                                                <Run Text="Товары"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Column="1" 
+                                    Grid.Row="3" 
+                                    BorderThickness="0 1 0 0" 
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Grid Margin="8">
+                                    <Button FontSize="15" 
+                                            Style="{DynamicResource MaterialDesignFlatButton}" 
+                                            HorizontalAlignment="Left" 
+                                            x:Name="ButtonCompanies" 
+                                            Click="ButtonCompanies_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Briefcase" />
+                                            <TextBlock Margin="8 0 0 0" 
+                                                       VerticalAlignment="Center">
+                                                <Run Text="Компании"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button FontSize="15" 
+                                            Style="{DynamicResource MaterialDesignFlatButton}" 
+                                            HorizontalAlignment="Right" 
+                                            x:Name="ButtonProjects" 
+                                            Click="ButtonProjects_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Buffer" />
+                                            <TextBlock Margin="8 0 5 0" 
+                                                       VerticalAlignment="Center">
+                                                <Run Text="Проекты"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Column="1" 
+                                    Grid.Row="4" 
+                                    BorderThickness="0 1 0 0" 
+                                    BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Grid Margin="8">
+                                    <Button FontSize="15" 
+                                            Style="{DynamicResource MaterialDesignFlatButton}" 
+                                            HorizontalAlignment="Left" 
+                                            x:Name="ButtonPurchaseSelling" 
+                                            Click="ButtonPurchaseSelling_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Basket" />
+                                            <TextBlock Margin="8 0 0 0" 
+                                                       VerticalAlignment="Center">
+                                                <Run Text="Покупки и продажи"/></TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </materialDesign:Card>
+                    
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        
+    </Grid>
+</UserControl>

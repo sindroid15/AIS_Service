@@ -1,0 +1,364 @@
+﻿<src:MetroWindow x:Class="AIS.Forms.MainwWindow"
+                 Title="АИС"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:AIS.Forms"
+                 xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"         
+                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                 xmlns:src="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:domain="clr-namespace:AIS_DataAccessLayer;assembly=AlphaElectric_DataAccessLayer"
+                 
+                 Background="{DynamicResource MaterialDesignPaper}"
+                 FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                 TextElement.FontWeight="Regular"
+                 TextElement.FontSize="12"
+                 TextOptions.TextFormattingMode="Ideal" 
+                 TextOptions.TextRenderingMode="Auto" 
+                 GlowBrush="{DynamicResource AccentColorBrush}"
+                 
+                 Height="700"
+                 Width="900"     
+                 Loaded="Window_Loaded"
+                 WindowStartupLocation="CenterScreen"
+                 Icon="Resources/icon.ico">
+    <UserControl>
+        <UserControl.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                   
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </UserControl.Resources>
+
+        <materialDesign:DialogHost Identifier="RootDialog" 
+                                   SnackbarMessageQueue="{Binding MessageQueue, ElementName=MainSnackbar}">
+            <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding IsChecked, ElementName=MenuToggleButton}">
+                <materialDesign:DrawerHost.LeftDrawerContent>
+                    <DockPanel MinWidth="212">
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                      DockPanel.Dock="Top"
+                                      HorizontalAlignment="Right" 
+                                      Margin="16"
+                                      IsChecked="{Binding IsChecked, ElementName=MenuToggleButton, Mode=TwoWay}" />
+                        <TreeView MinWidth="220">
+                            <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_Home_PreviewMouseLeftButtonDown" 
+                                          Header="Домой"/>
+                            <TreeViewItem  IsExpanded="True">
+                                <TreeViewItem.Header >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Width="16" 
+                                                 Height="16">
+                                            <Canvas Width="15" 
+                                                    Height="15">
+                                                <materialDesign:PackIcon Kind="Archive" 
+                                                                         VerticalAlignment="Center" />
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="8 0 0 0">
+                                            Товары
+                                        </TextBlock>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_ProductAdd_PreviewMouseLeftButtonDown"  
+                                              Header="Добавить новый"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_ProductEdit_PreviewMouseLeftButtonDown"  
+                                              Header="Обновить"/>
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Viewbox Width="16" 
+                                                     Height="16">
+                                                <Canvas Width="15" 
+                                                        Height="15">
+                                                    <materialDesign:PackIcon Kind="Raspberrypi" 
+                                                                             VerticalAlignment="Center" />
+                                                </Canvas>
+                                            </Viewbox>
+                                            <TextBlock  PreviewMouseLeftButtonDown="TreeItem_ProductPartList_PreviewMouseLeftButtonDown" 
+                                                        Margin="8 0 0 0">
+                                                Список запчастей
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Viewbox Width="16" 
+                                                     Height="16">
+                                                <Canvas Width="15" 
+                                                        Height="15">
+                                                    <materialDesign:PackIcon Kind="MinusNetwork" 
+                                                                             VerticalAlignment="Center" />
+                                                </Canvas>
+                                            </Viewbox>
+                                            <TextBlock PreviewMouseLeftButtonDown="TreeItem_ProductPanelList_PreviewMouseLeftButtonDown" 
+                                                       Margin="8 0 0 0">
+                                                Список целых
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Width="16" 
+                                                 Height="16">
+                                            <Canvas Width="15" 
+                                                    Height="15">
+                                                <materialDesign:PackIcon Kind="Account" 
+                                                                         VerticalAlignment="Center" />
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="8 0 0 0">
+                                            Сотрудники
+                                        </TextBlock>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_EmployeeAdd_PreviewMouseLeftButtonDown" 
+                                              Header="Добавить нового"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_EmployeeEdit_PreviewMouseLeftButtonDown" 
+                                              Header="Изменить"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_EmployeeList_PreviewMouseLeftButtonDown"  
+                                              Header="писок"/>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Width="16" 
+                                                 Height="16">
+                                            <Canvas Width="15" 
+                                                    Height="15">
+                                                <materialDesign:PackIcon Kind="Buffer" 
+                                                                         VerticalAlignment="Center" />
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="8 0 0 0">
+                                            Проекты
+                                        </TextBlock>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_ProjectAdd_PreviewMouseLeftButtonDown" 
+                                              Header="Добавить новый"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_ProjectEdit_PreviewMouseLeftButtonDown" 
+                                              Header="Изменить"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_ProjectList_PreviewMouseLeftButtonDown" 
+                                              Header="Список"/>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Width="16" 
+                                                 Height="16">
+                                            <Canvas Width="15" 
+                                                    Height="15">
+                                                <materialDesign:PackIcon Kind="Briefcase" 
+                                                                         VerticalAlignment="Center" />
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="8 0 0 0">
+                                            Компании
+                                        </TextBlock>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CompaniesAdd_PreviewMouseLeftButtonDown" 
+                                              Header="Добавить новую"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CompaniesEdit_PreviewMouseLeftButtonDown" 
+                                              Header="Изменить"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CompaniesList_PreviewMouseLeftButtonDown" 
+                                              Header="Список"/>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Width="16" 
+                                                 Height="16">
+                                            <Canvas Width="15" 
+                                                    Height="15">
+                                                <materialDesign:PackIcon Kind="Basket" 
+                                                                         VerticalAlignment="Center" />
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="8 0 0 0">
+                                            Покупки
+                                        </TextBlock>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_PurchaseOrderAdd_PreviewMouseLeftButtonDown" 
+                                              Header="Разместить заказ на покупку"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_PurchaseOrderList_PreviewMouseLeftButtonDown" 
+                                              Header="Предыдущие заказы на закупку"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_SupplierList_PreviewMouseLeftButtonDown" 
+                                              Header="Список поставщиков"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_SupplierEdit_PreviewMouseLeftButtonDown" 
+                                              Header="Изменить"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_SupplierAdd_PreviewMouseLeftButtonDown" 
+                                              Header="Добавить поставщика"/>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Width="16" 
+                                                 Height="16">
+                                            <Canvas Width="15" 
+                                                    Height="15">
+                                                <materialDesign:PackIcon Kind="BasketUnfill" 
+                                                                         VerticalAlignment="Center" />
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="8 0 0 0">
+                                            Продажи
+                                        </TextBlock>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CustomerOrderAdd_PreviewMouseLeftButtonDown" 
+                                              Header="Создать заказ клиента"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CustomerOrderList_PreviewMouseLeftButtonDown" 
+                                              Header="Предыдущие заказы клиентов"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CustomerList_PreviewMouseLeftButtonDown" 
+                                              Header="Список клиентов"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CustomerEdit_PreviewMouseLeftButtonDown" 
+                                              Header="Изменить клиента"/>
+                                <TreeViewItem PreviewMouseLeftButtonDown="TreeItem_CustomerAdd_PreviewMouseLeftButtonDown" 
+                                              Header="Добавить нового клиента"/>
+                            </TreeViewItem>
+                        </TreeView>
+                    </DockPanel>
+                </materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel>
+                    <materialDesign:ColorZone Padding="16" 
+                                              materialDesign:ShadowAssist.ShadowDepth="Depth2" 
+                                              Mode="PrimaryMid" 
+                                              DockPanel.Dock="Top">
+                        <DockPanel>
+                            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                          IsChecked="False" 
+                                          x:Name="MenuToggleButton"/>
+                            <materialDesign:PopupBox PopupMode="Click" 
+                                                     DockPanel.Dock="Right" 
+                                                     PlacementMode="BottomAndAlignRightEdges" 
+                                                     StaysOpen="False">
+                                <StackPanel>
+                                    <Button Content="Выйти" 
+                                            Click="MenuPopupLogoutButton_OnClick"/>
+                                    <Separator/>
+                                    
+                                    
+                                    
+                                </StackPanel>
+                                
+                            </materialDesign:PopupBox>
+                            <TextBlock HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       FontSize="22">
+                                <Run Text="АИС сервисного обслуживания клиентов"/>
+                            </TextBlock>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel Grid.Row="0" 
+                                    Margin="16 5 16 5" 
+                                    Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                                        x:Name="btn_Employees">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Account" 
+                                                                 VerticalAlignment="Center" />
+                                        <TextBlock MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_1">
+                                            <Run TextBlock.FontWeight="Regular" 
+                                                 TextBlock.FontSize="14" 
+                                                 Text="  Сотрудники"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Margin="10 0 10 0" 
+                                        Style="{StaticResource MaterialDesignFlatButton}" 
+                                        x:Name="btn_Products">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Archive" 
+                                                                 VerticalAlignment="Center" />
+                                        <TextBlock MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_2">
+                                            <Run TextBlock.FontWeight="Regular" 
+                                                 TextBlock.FontSize="14" 
+                                                 Text="  Товары"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Margin="10 0 10 0" 
+                                        Style="{StaticResource MaterialDesignFlatButton}" 
+                                        x:Name="btn_Companies">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Briefcase" 
+                                                                 VerticalAlignment="Center" />
+                                        <TextBlock MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_3">
+                                            <Run TextBlock.FontWeight="Regular" 
+                                                 TextBlock.FontSize="14" 
+                                                 Text="  Компании"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Margin="10 0 10 0" 
+                                        Style="{StaticResource MaterialDesignFlatButton}" 
+                                        x:Name="btn_Projects">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Buffer" 
+                                                                 VerticalAlignment="Center" />
+                                        <TextBlock MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_4">
+                                            <Run TextBlock.FontWeight="Regular" 
+                                                 TextBlock.FontSize="14" 
+                                                 Text="  Проекты"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Margin="10 0 10 0" 
+                                        Style="{StaticResource MaterialDesignFlatButton}" 
+                                        x:Name="btn_PurchaseSelling">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="BasketUnfill" 
+                                                                 VerticalAlignment="Center" />
+                                        <TextBlock MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_5">
+                                            <Run TextBlock.FontWeight="Regular" 
+                                                 TextBlock.FontSize="14" 
+                                                 Text="  Покупки и продажи"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0 0 0 1" />
+                        
+                        <Grid Grid.Row="1" 
+                              Name="UserPages" 
+                              Margin="20,0,20,0">
+                            
+                        </Grid>
+
+                        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" 
+                                                 x:Name="MainSnackbar"
+                                                 Grid.Row="1" />
+                    </Grid>
+                </DockPanel>
+            </materialDesign:DrawerHost>
+        </materialDesign:DialogHost>
+    </UserControl>
+</src:MetroWindow>

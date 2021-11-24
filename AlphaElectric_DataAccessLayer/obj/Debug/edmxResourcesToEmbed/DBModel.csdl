@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AlphaElectricEntities" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="AlphaElectricEntitiesDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="AlphaElectricEntities.Employee" />
+    <EntitySet Name="Designations" EntityType="AlphaElectricEntities.Designation" />
+    <AssociationSet Name="EmployeeDesignation" Association="AlphaElectricEntities.EmployeeDesignation">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Designation" EntitySet="Designations" />
+    </AssociationSet>
+    <EntitySet Name="Products" EntityType="AlphaElectricEntities.Product" cg:GetterAccess="Internal" />
+    <EntitySet Name="Inventories" EntityType="AlphaElectricEntities.Inventory" />
+    <EntitySet Name="Locations" EntityType="AlphaElectricEntities.Location" />
+    <AssociationSet Name="ProductInventory" Association="AlphaElectricEntities.ProductInventory">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <EntitySet Name="PanelShellGradeProtections" EntityType="AlphaElectricEntities.PanelShellGradeProtection" />
+    <EntitySet Name="SizeTypes" EntityType="AlphaElectricEntities.SizeType" />
+    <EntitySet Name="Types" EntityType="AlphaElectricEntities.Type" />
+    <EntitySet Name="Certifications" EntityType="AlphaElectricEntities.Certification" />
+    <AssociationSet Name="PanelPanelShellGradeProtection" Association="AlphaElectricEntities.PanelPanelShellGradeProtection">
+      <End Role="Panel" EntitySet="Products" />
+      <End Role="PanelShellGradeProtection" EntitySet="PanelShellGradeProtections" />
+    </AssociationSet>
+    <AssociationSet Name="PanelSizeType" Association="AlphaElectricEntities.PanelSizeType">
+      <End Role="Panel" EntitySet="Products" />
+      <End Role="SizeType" EntitySet="SizeTypes" />
+    </AssociationSet>
+    <AssociationSet Name="PanelCertification" Association="AlphaElectricEntities.PanelCertification">
+      <End Role="Panel" EntitySet="Products" />
+      <End Role="Certification" EntitySet="Certifications" />
+    </AssociationSet>
+    <AssociationSet Name="PanelType" Association="AlphaElectricEntities.PanelType">
+      <End Role="Panel" EntitySet="Products" />
+      <End Role="Type" EntitySet="Types" />
+    </AssociationSet>
+    <EntitySet Name="Makes" EntityType="AlphaElectricEntities.Make" />
+    <AssociationSet Name="ProductMake" Association="AlphaElectricEntities.ProductMake">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Make" EntitySet="Makes" />
+    </AssociationSet>
+    <EntitySet Name="PaTypes" EntityType="AlphaElectricEntities.PaType" />
+    <AssociationSet Name="PartPaType" Association="AlphaElectricEntities.PartPaType">
+      <End Role="Part" EntitySet="Products" />
+      <End Role="PaType" EntitySet="PaTypes" />
+    </AssociationSet>
+    <EntitySet Name="CustomerOrders" EntityType="AlphaElectricEntities.CustomerOrder" />
+    <EntitySet Name="Product_CustomerOrderBT" EntityType="AlphaElectricEntities.Product_CustomerOrderBT" />
+    <AssociationSet Name="ProductProduct_CustomerOrderBT" Association="AlphaElectricEntities.ProductProduct_CustomerOrderBT">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Product_CustomerOrderBT" EntitySet="Product_CustomerOrderBT" />
+    </AssociationSet>
+    <AssociationSet Name="Product_CustomerOrderBTCustomerOrder" Association="AlphaElectricEntities.Product_CustomerOrderBTCustomerOrder">
+      <End Role="Product_CustomerOrderBT" EntitySet="Product_CustomerOrderBT" />
+      <End Role="CustomerOrder" EntitySet="CustomerOrders" />
+    </AssociationSet>
+    <EntitySet Name="Contacts" EntityType="AlphaElectricEntities.Contact" />
+    <EntitySet Name="PurchaseOrders" EntityType="AlphaElectricEntities.PurchaseOrder" />
+    <EntitySet Name="Product_PurchaseOrderBT" EntityType="AlphaElectricEntities.Product_PurchaseOrderBT" />
+    <AssociationSet Name="ProductProduct_PurchaseOrderBT" Association="AlphaElectricEntities.ProductProduct_PurchaseOrderBT">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Product_PurchaseOrderBT" EntitySet="Product_PurchaseOrderBT" />
+    </AssociationSet>
+    <AssociationSet Name="PurchaseOrderProduct_PurchaseOrderBT" Association="AlphaElectricEntities.PurchaseOrderProduct_PurchaseOrderBT">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+      <End Role="Product_PurchaseOrderBT" EntitySet="Product_PurchaseOrderBT" />
+    </AssociationSet>
+    <EntitySet Name="Projects" EntityType="AlphaElectricEntities.Project" />
+    <AssociationSet Name="CustomerOrderContact" Association="AlphaElectricEntities.CustomerOrderContact">
+      <End Role="CustomerOrder" EntitySet="CustomerOrders" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="PurchaseOrderContact" Association="AlphaElectricEntities.PurchaseOrderContact">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <EntitySet Name="Logins" EntityType="AlphaElectricEntities.Login" />
+    <EntitySet Name="Panel_ProjectBT" EntityType="AlphaElectricEntities.Panel_ProjectBT" />
+    <AssociationSet Name="PanelPanel_ProjectBT" Association="AlphaElectricEntities.PanelPanel_ProjectBT">
+      <End Role="Panel" EntitySet="Products" />
+      <End Role="Panel_ProjectBT" EntitySet="Panel_ProjectBT" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectPanel_ProjectBT" Association="AlphaElectricEntities.ProjectPanel_ProjectBT">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Panel_ProjectBT" EntitySet="Panel_ProjectBT" />
+    </AssociationSet>
+    <AssociationSet Name="LocationInventory" Association="AlphaElectricEntities.LocationInventory">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <EntitySet Name="EmployeeStatus" EntityType="AlphaElectricEntities.EmployeeStatus" />
+    <AssociationSet Name="EmployeeEmployeeStatus" Association="AlphaElectricEntities.EmployeeEmployeeStatus">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeStatus" EntitySet="EmployeeStatus" />
+    </AssociationSet>
+    <EntitySet Name="OrderStatus" EntityType="AlphaElectricEntities.OrderStatus" />
+    <AssociationSet Name="OrderStatusCustomerOrder" Association="AlphaElectricEntities.OrderStatusCustomerOrder">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="CustomerOrder" EntitySet="CustomerOrders" />
+    </AssociationSet>
+    <AssociationSet Name="OrderStatusPurchaseOrder" Association="AlphaElectricEntities.OrderStatusPurchaseOrder">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeePurchaseOrder" Association="AlphaElectricEntities.EmployeePurchaseOrder">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerOrderEmployee" Association="AlphaElectricEntities.CustomerOrderEmployee">
+      <End Role="CustomerOrder" EntitySet="CustomerOrders" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectCustomerOrder" Association="AlphaElectricEntities.ProjectCustomerOrder">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="CustomerOrder" EntitySet="CustomerOrders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Passport" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Designation" Relationship="AlphaElectricEntities.EmployeeDesignation" FromRole="Employee" ToRole="Designation" />
+    <Property Name="DesignationID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeStatus" Relationship="AlphaElectricEntities.EmployeeEmployeeStatus" FromRole="Employee" ToRole="EmployeeStatus" />
+    <Property Name="EmployeeStatusID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PurchaseOrders" Relationship="AlphaElectricEntities.EmployeePurchaseOrder" FromRole="Employee" ToRole="PurchaseOrder" />
+    <NavigationProperty Name="CustomerOrders" Relationship="AlphaElectricEntities.CustomerOrderEmployee" FromRole="Employee" ToRole="CustomerOrder" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Employees" Relationship="AlphaElectricEntities.EmployeeDesignation" FromRole="Designation" ToRole="Employee" />
+  </EntityType>
+  <Association Name="EmployeeDesignation">
+    <End Type="AlphaElectricEntities.Employee" Role="Employee" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.Designation" Role="Designation" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DesignationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Product" Abstract="true" cg:TypeAccess="Public">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SerialNo" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Inventory" Relationship="AlphaElectricEntities.ProductInventory" FromRole="Product" ToRole="Inventory" />
+    <NavigationProperty Name="Make" Relationship="AlphaElectricEntities.ProductMake" FromRole="Product" ToRole="Make" />
+    <Property Name="MakeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product_CustomerOrderBT" Relationship="AlphaElectricEntities.ProductProduct_CustomerOrderBT" FromRole="Product" ToRole="Product_CustomerOrderBT" />
+    <NavigationProperty Name="Product_PurchaseOrderBT" Relationship="AlphaElectricEntities.ProductProduct_PurchaseOrderBT" FromRole="Product" ToRole="Product_PurchaseOrderBT" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StockLevel" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="AlphaElectricEntities.ProductInventory" FromRole="Inventory" ToRole="Product" />
+    <NavigationProperty Name="Location" Relationship="AlphaElectricEntities.LocationInventory" FromRole="Inventory" ToRole="Location" />
+    <Property Name="LocationID" Type="Int32" Nullable="false" ConcurrencyMode="None" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Inventories" Relationship="AlphaElectricEntities.LocationInventory" FromRole="Location" ToRole="Inventory" />
+  </EntityType>
+  <Association Name="ProductInventory">
+    <End Type="AlphaElectricEntities.Product" Role="Product" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.Inventory" Role="Inventory" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Panel" BaseType="AlphaElectricEntities.Product">
+    <NavigationProperty Name="PanelShellGradeProtection" Relationship="AlphaElectricEntities.PanelPanelShellGradeProtection" FromRole="Panel" ToRole="PanelShellGradeProtection" />
+    <Property Name="PanelShellGradeProtectionIPNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SizeType" Relationship="AlphaElectricEntities.PanelSizeType" FromRole="Panel" ToRole="SizeType" />
+    <Property Name="SizeTypeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Certification" Relationship="AlphaElectricEntities.PanelCertification" FromRole="Panel" ToRole="Certification" />
+    <Property Name="CertificationID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Type" Relationship="AlphaElectricEntities.PanelType" FromRole="Panel" ToRole="Type" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Panel_ProjectBT" Relationship="AlphaElectricEntities.PanelPanel_ProjectBT" FromRole="Panel" ToRole="Panel_ProjectBT" />
+  </EntityType>
+  <EntityType Name="PanelShellGradeProtection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IPNum" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="DescriptionSolids" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="DescriptionLiquids" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Panels" Relationship="AlphaElectricEntities.PanelPanelShellGradeProtection" FromRole="PanelShellGradeProtection" ToRole="Panel" />
+  </EntityType>
+  <EntityType Name="SizeType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Panels" Relationship="AlphaElectricEntities.PanelSizeType" FromRole="SizeType" ToRole="Panel" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Panels" Relationship="AlphaElectricEntities.PanelType" FromRole="Type" ToRole="Panel" />
+  </EntityType>
+  <EntityType Name="Certification">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Panels" Relationship="AlphaElectricEntities.PanelCertification" FromRole="Certification" ToRole="Panel" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="PanelPanelShellGradeProtection">
+    <End Type="AlphaElectricEntities.Panel" Role="Panel" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.PanelShellGradeProtection" Role="PanelShellGradeProtection" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PanelShellGradeProtection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Panel">
+        <PropertyRef Name="PanelShellGradeProtectionIPNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PanelSizeType">
+    <End Type="AlphaElectricEntities.Panel" Role="Panel" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.SizeType" Role="SizeType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="SizeType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Panel">
+        <PropertyRef Name="SizeTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PanelCertification">
+    <End Type="AlphaElectricEntities.Panel" Role="Panel" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.Certification" Role="Certification" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Certification">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Panel">
+        <PropertyRef Name="CertificationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PanelType">
+    <End Type="AlphaElectricEntities.Panel" Role="Panel" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.Type" Role="Type" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Panel">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Part" BaseType="AlphaElectricEntities.Product">
+    <NavigationProperty Name="PaType" Relationship="AlphaElectricEntities.PartPaType" FromRole="Part" ToRole="PaType" />
+    <Property Name="PaTypeID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Make">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Products" Relationship="AlphaElectricEntities.ProductMake" FromRole="Make" ToRole="Product" />
+  </EntityType>
+  <Association Name="ProductMake">
+    <End Type="AlphaElectricEntities.Product" Role="Product" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.Make" Role="Make" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Make">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="MakeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PaType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Parts" Relationship="AlphaElectricEntities.PartPaType" FromRole="PaType" ToRole="Part" />
+  </EntityType>
+  <Association Name="PartPaType">
+    <End Type="AlphaElectricEntities.Part" Role="Part" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.PaType" Role="PaType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PaType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="PaTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CustomerOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product_CustomerOrderBT" Relationship="AlphaElectricEntities.Product_CustomerOrderBTCustomerOrder" FromRole="CustomerOrder" ToRole="Product_CustomerOrderBT" />
+    <NavigationProperty Name="Contact" Relationship="AlphaElectricEntities.CustomerOrderContact" FromRole="CustomerOrder" ToRole="Contact" />
+    <Property Name="ContactID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrderStatus" Relationship="AlphaElectricEntities.OrderStatusCustomerOrder" FromRole="CustomerOrder" ToRole="OrderStatus" />
+    <Property Name="OrderStatusID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="AlphaElectricEntities.CustomerOrderEmployee" FromRole="CustomerOrder" ToRole="Employee" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="AlphaElectricEntities.ProjectCustomerOrder" FromRole="CustomerOrder" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Product_CustomerOrderBT">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CustomerOrderID" />
+    </Key>
+    <NavigationProperty Name="Product" Relationship="AlphaElectricEntities.ProductProduct_CustomerOrderBT" FromRole="Product_CustomerOrderBT" ToRole="Product" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CustomerOrder" Relationship="AlphaElectricEntities.Product_CustomerOrderBTCustomerOrder" FromRole="Product_CustomerOrderBT" ToRole="CustomerOrder" />
+    <Property Name="CustomerOrderID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="ProductProduct_CustomerOrderBT">
+    <End Type="AlphaElectricEntities.Product" Role="Product" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.Product_CustomerOrderBT" Role="Product_CustomerOrderBT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_CustomerOrderBT">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Product_CustomerOrderBTCustomerOrder">
+    <End Type="AlphaElectricEntities.Product_CustomerOrderBT" Role="Product_CustomerOrderBT" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.CustomerOrder" Role="CustomerOrder" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerOrder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_CustomerOrderBT">
+        <PropertyRef Name="CustomerOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="CustomerOrders" Relationship="AlphaElectricEntities.CustomerOrderContact" FromRole="Contact" ToRole="CustomerOrder" />
+    <NavigationProperty Name="PurchaseOrders" Relationship="AlphaElectricEntities.PurchaseOrderContact" FromRole="Contact" ToRole="PurchaseOrder" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PODate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product_PurchaseOrderBT" Relationship="AlphaElectricEntities.PurchaseOrderProduct_PurchaseOrderBT" FromRole="PurchaseOrder" ToRole="Product_PurchaseOrderBT" />
+    <NavigationProperty Name="Contact" Relationship="AlphaElectricEntities.PurchaseOrderContact" FromRole="PurchaseOrder" ToRole="Contact" />
+    <Property Name="ContactID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrderStatus" Relationship="AlphaElectricEntities.OrderStatusPurchaseOrder" FromRole="PurchaseOrder" ToRole="OrderStatus" />
+    <Property Name="OrderStatusID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="AlphaElectricEntities.EmployeePurchaseOrder" FromRole="PurchaseOrder" ToRole="Employee" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_PurchaseOrderBT">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="PurchaseOrderID" />
+    </Key>
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="AlphaElectricEntities.ProductProduct_PurchaseOrderBT" FromRole="Product_PurchaseOrderBT" ToRole="Product" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PurchaseOrder" Relationship="AlphaElectricEntities.PurchaseOrderProduct_PurchaseOrderBT" FromRole="Product_PurchaseOrderBT" ToRole="PurchaseOrder" />
+    <Property Name="PurchaseOrderID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="ProductProduct_PurchaseOrderBT">
+    <End Type="AlphaElectricEntities.Product" Role="Product" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.Product_PurchaseOrderBT" Role="Product_PurchaseOrderBT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_PurchaseOrderBT">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PurchaseOrderProduct_PurchaseOrderBT">
+    <End Type="AlphaElectricEntities.PurchaseOrder" Role="PurchaseOrder" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.Product_PurchaseOrderBT" Role="Product_PurchaseOrderBT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_PurchaseOrderBT">
+        <PropertyRef Name="PurchaseOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="DeliveyDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Panel_ProjectBT" Relationship="AlphaElectricEntities.ProjectPanel_ProjectBT" FromRole="Project" ToRole="Panel_ProjectBT" />
+    <NavigationProperty Name="CustomerOrder" Relationship="AlphaElectricEntities.ProjectCustomerOrder" FromRole="Project" ToRole="CustomerOrder" />
+    <Property Name="CustomerOrderID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="CustomerOrderContact">
+    <End Type="AlphaElectricEntities.CustomerOrder" Role="CustomerOrder" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.Contact" Role="Contact" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerOrder">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PurchaseOrderContact">
+    <End Type="AlphaElectricEntities.PurchaseOrder" Role="PurchaseOrder" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.Contact" Role="Contact" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Panel_ProjectBT">
+    <Key>
+      <PropertyRef Name="PanelID" />
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Panel" Relationship="AlphaElectricEntities.PanelPanel_ProjectBT" FromRole="Panel_ProjectBT" ToRole="Panel" />
+    <Property Name="PanelID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="AlphaElectricEntities.ProjectPanel_ProjectBT" FromRole="Panel_ProjectBT" ToRole="Project" />
+    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="PanelPanel_ProjectBT">
+    <End Type="AlphaElectricEntities.Panel" Role="Panel" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.Panel_ProjectBT" Role="Panel_ProjectBT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Panel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Panel_ProjectBT">
+        <PropertyRef Name="PanelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectPanel_ProjectBT">
+    <End Type="AlphaElectricEntities.Project" Role="Project" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.Panel_ProjectBT" Role="Panel_ProjectBT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Panel_ProjectBT">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationInventory">
+    <End Type="AlphaElectricEntities.Location" Role="Location" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EmployeeStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="AlphaElectricEntities.EmployeeEmployeeStatus" FromRole="EmployeeStatus" ToRole="Employee" />
+  </EntityType>
+  <Association Name="EmployeeEmployeeStatus">
+    <End Type="AlphaElectricEntities.Employee" Role="Employee" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.EmployeeStatus" Role="EmployeeStatus" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="CustomerOrders" Relationship="AlphaElectricEntities.OrderStatusCustomerOrder" FromRole="OrderStatus" ToRole="CustomerOrder" />
+    <NavigationProperty Name="PurchaseOrders" Relationship="AlphaElectricEntities.OrderStatusPurchaseOrder" FromRole="OrderStatus" ToRole="PurchaseOrder" />
+  </EntityType>
+  <Association Name="OrderStatusCustomerOrder">
+    <End Type="AlphaElectricEntities.OrderStatus" Role="OrderStatus" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.CustomerOrder" Role="CustomerOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerOrder">
+        <PropertyRef Name="OrderStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderStatusPurchaseOrder">
+    <End Type="AlphaElectricEntities.OrderStatus" Role="OrderStatus" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.PurchaseOrder" Role="PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="OrderStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeePurchaseOrder">
+    <End Type="AlphaElectricEntities.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="AlphaElectricEntities.PurchaseOrder" Role="PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerOrderEmployee">
+    <End Type="AlphaElectricEntities.CustomerOrder" Role="CustomerOrder" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.Employee" Role="Employee" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerOrder">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectCustomerOrder">
+    <End Type="AlphaElectricEntities.Project" Role="Project" Multiplicity="*" />
+    <End Type="AlphaElectricEntities.CustomerOrder" Role="CustomerOrder" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerOrder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="CustomerOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

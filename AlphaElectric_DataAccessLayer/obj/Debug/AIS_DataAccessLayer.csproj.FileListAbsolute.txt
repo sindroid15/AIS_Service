@@ -1,0 +1,12 @@
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\bin\Debug\AlphaElectric_DataAccessLayer.dll.config
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\bin\Debug\AlphaElectric_DataAccessLayer.dll
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\bin\Debug\AlphaElectric_DataAccessLayer.pdb
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\obj\Debug\AIS_DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\obj\Debug\AIS_DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\obj\Debug\AIS_DataAccessLayer.csproj.CopyComplete
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\obj\Debug\AlphaElectric_DataAccessLayer.dll
+C:\Users\sindr\Desktop\AIS_Service-main\AlphaElectric_DataAccessLayer\obj\Debug\AlphaElectric_DataAccessLayer.pdb
